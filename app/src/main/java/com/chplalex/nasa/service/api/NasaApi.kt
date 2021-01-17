@@ -1,6 +1,17 @@
 package com.chplalex.nasa.service.api
 
-const val NASA_API_KEY = "bL4xVFxkKWyE08b3NQlDTaOKpp8FZ15HWfyCB4Xm"
+import com.chplalex.nasa.mvp.model.NasaApodData
+import io.reactivex.Single
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+//const val NASA_API_KEY = "bL4xVFxkKWyE08b3NQlDTaOKpp8FZ15HWfyCB4Xm"
+const val NASA_BASE_URL = "https://api.nasa.gov/"
 
 interface NasaApi {
+
+    @GET("planetary/apod")
+    fun nasaLoadApod(
+        @Query("api_key") apiKey: String
+    ) : Single<NasaApodData>
 }
