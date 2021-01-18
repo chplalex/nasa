@@ -1,49 +1,32 @@
 package com.chplalex.nasa.mvp.presenter
 
-import android.content.Context
 import com.chplalex.nasa.BuildConfig.NASA_API_KEY
 import com.chplalex.nasa.mvp.view.IViewNasaApod
 import com.chplalex.nasa.service.api.NasaApi
-import com.chplalex.nasa.ui.App.Companion.instance
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import moxy.MvpPresenter
 import javax.inject.Inject
 import javax.inject.Named
 
-class PresenterNasaApod() : MvpPresenter<IViewNasaApod>() {
-
-    @Inject
-    lateinit var nasaApi: NasaApi
-
-    @Inject
-    lateinit var context: Context
-
-    @Inject
-    lateinit var disposable: CompositeDisposable
-
-    @Inject
+class PresenterNasaApod @Inject constructor(
+    private val nasaApi: NasaApi,
+    private val disposable: CompositeDisposable,
     @Named("IO")
-    lateinit var ioScheduler: Scheduler
-
-    @Inject
+    private val ioScheduler: Scheduler,
     @Named("UI")
-    lateinit var uiScheduler: Scheduler
-
+    private val uiScheduler: Scheduler
+) :
+    MvpPresenter<IViewNasaApod>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        instance.activityComponent?.inject(this)
         loadData()
     }
-
-    private var disp: Disposable? = null
 
     override fun onDestroy() {
         super.onDestroy()
         disposable.dispose()
-        disp?.dispose()
     }
 
     private fun loadData() {

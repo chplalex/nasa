@@ -9,15 +9,10 @@ import com.chplalex.nasa.utils.WIKI_BASE_URL
 import moxy.MvpPresenter
 import javax.inject.Inject
 
-class PresenterWiki : MvpPresenter<IViewWiki>() {
-
-    @Inject
-    lateinit var context: Context
-
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-        App.instance.activityComponent?.inject(this)
-    }
+class PresenterWiki @Inject constructor(
+    private val context: Context
+) :
+    MvpPresenter<IViewWiki>() {
 
     fun onEndIconPressed(text: String) = Intent(Intent.ACTION_VIEW).also {
         it.data = Uri.parse(WIKI_BASE_URL + text)

@@ -25,10 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        instance.createActivityComponent(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        instance.createActivityComponent(this)
         instance.activityComponent?.inject(this)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)

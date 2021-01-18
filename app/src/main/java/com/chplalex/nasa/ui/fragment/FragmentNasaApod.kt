@@ -1,32 +1,45 @@
 package com.chplalex.nasa.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.chplalex.nasa.R
 import com.chplalex.nasa.mvp.presenter.PresenterNasaApod
 import com.chplalex.nasa.mvp.view.IViewNasaApod
+import com.chplalex.nasa.ui.App
+import com.chplalex.nasa.utils.TAG
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
+import javax.inject.Provider
 
 class FragmentNasaApod : MvpAppCompatFragment(), IViewNasaApod {
 
+    @Inject
+    lateinit var injectProvider: Provider<PresenterNasaApod>
+
     private val presenter by moxyPresenter {
-        PresenterNasaApod()
+        injectProvider.get()
     }
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var imageView: ImageView
     private lateinit var textViewTitle: TextView
     private lateinit var textViewExplanation: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "inject(), instance = ${App.instance}, activityComponent = ${App.instance.activityComponent}")
+        App.instance.activityComponent?.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
