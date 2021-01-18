@@ -15,7 +15,7 @@ import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 import javax.inject.Provider
 
-class FragmentWiki : MvpAppCompatFragment(), IViewWiki {
+class FragmentWiki : MvpAppCompatFragment(R.layout.fragment_wiki), IViewWiki {
 
     @Inject
     lateinit var injectPresenter: Provider<PresenterWiki>
@@ -32,13 +32,10 @@ class FragmentWiki : MvpAppCompatFragment(), IViewWiki {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_wiki, container, false).also {
-        inputEditText = it.findViewById(R.id.wiki_input_edit_text)
-        inputLayout = it.findViewById(R.id.wiki_input_layout)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        inputEditText = view.findViewById(R.id.wiki_input_edit_text)
+        inputLayout = view.findViewById(R.id.wiki_input_layout)
         inputLayout.setEndIconOnClickListener {
             presenter.onEndIconPressed(inputEditText.text.toString())
         }

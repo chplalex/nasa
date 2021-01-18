@@ -21,7 +21,7 @@ import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 import javax.inject.Provider
 
-class FragmentNasaApod : MvpAppCompatFragment(), IViewNasaApod {
+class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IViewNasaApod {
 
     @Inject
     lateinit var injectProvider: Provider<PresenterNasaApod>
@@ -36,20 +36,16 @@ class FragmentNasaApod : MvpAppCompatFragment(), IViewNasaApod {
     private lateinit var textViewExplanation: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(TAG, "inject(), instance = ${App.instance}, activityComponent = ${App.instance.activityComponent}")
         App.instance.activityComponent?.inject(this)
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_nasa_apod, container, false).also {
-        imageView = it.findViewById(R.id.nasa_apod_image)
-        textViewTitle = it.findViewById(R.id.nasa_apod_title)
-        textViewExplanation = it.findViewById(R.id.nasa_apod_explanation)
-        setBottomSheetBehavior(it.findViewById(R.id.nasa_apod_bottom_sheet_container))
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        imageView = view.findViewById(R.id.nasa_apod_image)
+        textViewTitle = view.findViewById(R.id.nasa_apod_title)
+        textViewExplanation = view.findViewById(R.id.nasa_apod_explanation)
+        setBottomSheetBehavior(view.findViewById(R.id.nasa_apod_bottom_sheet_container))
     }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
