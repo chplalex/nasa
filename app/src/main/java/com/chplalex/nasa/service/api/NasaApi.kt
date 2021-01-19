@@ -6,11 +6,13 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 const val NASA_BASE_URL = "https://api.nasa.gov/"
+const val NASA_DATE_PATTERN = "YYYY-MM-DD"
 
 interface NasaApi {
 
     @GET("planetary/apod")
     fun nasaLoadApod(
+        @Query("date") date: String,
         @Query("api_key") apiKey: String
     ) : Single<NasaApodData>
 }

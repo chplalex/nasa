@@ -13,4 +13,10 @@
     <string name="title_error">Error</string>
     <string name="search_wiki">wiki search text</string>
     <string name="wiki_helper_text">pay attention to letters count</string>
+    <string name="nasa_apod_progress_content_description">Image loading is in the progress</string>
+    <string name="nasa_apod_chip_today">Today</string>
+    <string name="nasa_apod_chip_week_ago">Week ago</string>
+    <string name="nasa_apod_chip_month_ago">Month ago</string>
+    <string name="nasa_apod_chip_year_ago">Year ago</string>
+    <string name="nasa_apod_button_clear">Clear</string>
 </resources>

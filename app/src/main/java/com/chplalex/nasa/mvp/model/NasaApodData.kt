@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class NasaApodData(
+    @SerializedName("code") @Expose
+    val code: Int,
+    @SerializedName("msg") @Expose
+    val msg: String,
     @SerializedName("date") @Expose
     val date: String,
     @SerializedName("explanation") @Expose
