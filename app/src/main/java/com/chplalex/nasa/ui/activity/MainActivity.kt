@@ -1,8 +1,8 @@
 package com.chplalex.nasa.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -15,12 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import com.chplalex.nasa.R
-import com.chplalex.nasa.utils.*
-import com.chplalex.nasa.service.api.NASA_DATE_PATTERN
 import com.chplalex.nasa.ui.App.Companion.instance
-import java.text.SimpleDateFormat
-import java.time.Year
-import java.util.*
+import com.chplalex.nasa.utils.SP_NAME
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         instance.createActivityComponent(this)
         super.onCreate(savedInstanceState)
+        initTheme()
         setContentView(R.layout.activity_main)
         instance.activityComponent?.inject(this)
 
@@ -47,8 +44,6 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.nav_nasa_apod, R.id.nav_wiki
         ), drawerLayout)
@@ -56,10 +51,27 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    private fun initTheme() {
+        val sp = getSharedPreferences(SP_NAME, MODE_PRIVATE)
+        when (sp.getInt("pref_theme_id", 1)) {
+            1 -> {}
+            2 -> {}
+            3 -> {}
+            4 -> {}
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_settings) {
+            navController.navigate(R.id.nav_action_settings)
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
