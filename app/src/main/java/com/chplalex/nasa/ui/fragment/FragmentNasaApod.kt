@@ -1,6 +1,5 @@
 package com.chplalex.nasa.ui.fragment
 
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -17,7 +16,6 @@ import com.chplalex.nasa.R
 import com.chplalex.nasa.mvp.presenter.PresenterNasaApod
 import com.chplalex.nasa.mvp.view.IViewNasaApod
 import com.chplalex.nasa.ui.App
-import com.chplalex.nasa.utils.WIKI_BASE_URL
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -106,7 +104,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
     }
 
     override fun setDefaultImage() {
-        imageView.setImageResource(R.drawable.ic_astronomy)
+        imageView.setImageResource(R.drawable.ic_nasa)
     }
 
     override fun setExplanation(explanation: String) {
