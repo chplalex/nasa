@@ -1,6 +1,7 @@
 package com.chplalex.nasa.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -14,7 +15,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import com.chplalex.nasa.R
+import com.chplalex.nasa.utils.*
+import com.chplalex.nasa.service.api.NASA_DATE_PATTERN
 import com.chplalex.nasa.ui.App.Companion.instance
+import java.text.SimpleDateFormat
+import java.time.Year
+import java.util.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

@@ -1,5 +1,6 @@
 package com.chplalex.nasa.ui.fragment
 
+import android.content.DialogInterface
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -65,6 +66,10 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
         chipGroup.setOnCheckedChangeListener(listener)
     }
 
+    override fun setChipToday() {
+        chipGroup.check(R.id.nasa_apod_chip_today)
+    }
+
     override fun setTitle(title: String) {
         textViewTitle.text = title
     }
@@ -107,6 +112,10 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
         imageView.setImageResource(R.drawable.ic_nasa)
     }
 
+    override fun setErrorImage() {
+        imageView.setImageResource(R.drawable.ic_load_error)
+    }
+
     override fun setExplanation(explanation: String) {
         textViewExplanation.text = explanation
     }
@@ -119,7 +128,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
         MaterialAlertDialogBuilder(requireActivity())
             .setTitle(title)
             .setMessage(error.message)
-            .setNeutralButton(R.string.nasa_apod_button_clear, null)
+            .setNeutralButton(R.string.nasa_apod_button_clear) { _, _ -> presenter.onDialogButtonPressed() }
             .create()
             .show()
     }

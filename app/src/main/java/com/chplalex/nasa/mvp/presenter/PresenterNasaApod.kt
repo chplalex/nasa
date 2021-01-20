@@ -1,5 +1,8 @@
 package com.chplalex.nasa.mvp.presenter
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import com.chplalex.nasa.BuildConfig.NASA_API_KEY
@@ -17,6 +20,7 @@ import javax.inject.Named
 
 class PresenterNasaApod @Inject constructor(
     private val nasaApi: NasaApi,
+    private val context: Context,
     private val disposable: CompositeDisposable,
     @Named("IO")
     private val ioScheduler: Scheduler,
@@ -37,15 +41,16 @@ class PresenterNasaApod @Inject constructor(
     }
 
     private fun onCheckedChange(group: ChipGroup, checkedId: Int) {
-        val date = when (checkedId) {
-            R.id.nasa_apod_chip_today -> Date().nasaPatternThisDay()
-            R.id.nasa_apod_chip_week_ago -> Date().nasaPatternWeekAgo()
-            R.id.nasa_apod_chip_month_ago -> Date().nasaPatternMonthAgo()
-            R.id.nasa_apod_chip_year_ago -> Date().nasaPatternYearAgo()
-            else -> Date().nasaPatternThisDay()
+        Log.d(TAG, "onCheckedChange(), checkedId = $checkedId")
+        when (checkedId) {
+            R.id.nasa_apod_chip_today -> loadData(Date().nasaPatternThisDay())
+            R.id.nasa_apod_chip_week_ago -> loadData(Date().nasaPatternWeekAgo())
+            R.id.nasa_apod_chip_month_ago -> loadData(Date().nasaPatternMonthAgo())
+            R.id.nasa_apod_chip_year_ago -> loadData(Date().nasaPatternYearAgo())
+            else -> {
+                viewState.setChipToday()
+            }
         }
-        Log.d(TAG, "checkedId = $checkedId, date = $date")
-        loadData(date)
     }
 
     private fun loadData(date: String) {
@@ -59,10 +64,11 @@ class PresenterNasaApod @Inject constructor(
                     when (it.mediaType) {
                         "image" -> viewState.setImage(it.url)
                         "video" -> {
-                            viewState.setVideo(it.url)
+                            viewState.setImage(it.url.youtubeThumbUrl())
+                            showVideo(it.url)
                         }
                         else -> {
-                            viewState.setDefaultImage()
+                            viewState.setErrorImage()
                             viewState.showError("Unknown media type", Exception(it.mediaType))
                         }
                     }
@@ -70,8 +76,18 @@ class PresenterNasaApod @Inject constructor(
                     viewState.setExplanation(it.explanation)
                 }, {
                     viewState.setProgressVisibility(View.INVISIBLE)
+                    viewState.setErrorImage()
                     viewState.showError("NASA API error", it)
                 })
         )
+    }
+
+    private fun showVideo(url: String) = Intent(Intent.ACTION_VIEW).also {
+        it.data = Uri.parse(url)
+        context.startActivity(it)
+    }
+
+    fun onDialogButtonPressed() {
+        viewState.setChipToday()
     }
 }
