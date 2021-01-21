@@ -16,7 +16,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import com.chplalex.nasa.R
 import com.chplalex.nasa.ui.App.Companion.instance
-import com.chplalex.nasa.utils.SP_NAME
+import com.chplalex.nasa.utils.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -52,13 +52,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initTheme() {
-        val sp = getSharedPreferences(SP_NAME, MODE_PRIVATE)
-        when (sp.getInt("pref_theme_id", 1)) {
-            1 -> {}
-            2 -> {}
-            3 -> {}
-            4 -> {}
+        val sp = getSharedPreferences(PREFS_FILE_NAME, MODE_PRIVATE)
+        val themeStyle = when (sp.getInt(PREFS_THEME_ID, THEME_ID_SYSTEM)) {
+            THEME_ID_SYSTEM -> R.style.Theme_Nasa_System
+            THEME_ID_LIGHT -> R.style.Theme_Nasa_Light
+            THEME_ID_DARK -> R.style.Theme_Nasa_Dark
+            THEME_ID_CUSTOM -> R.style.Theme_Nasa_Custom
+            else -> R.style.Theme_Nasa_System
         }
+        setTheme(themeStyle)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

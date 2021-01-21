@@ -15,8 +15,8 @@
             android:id="@+id/nasa_apod_chip_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="@dimen/nasa_views_margin"
+            android:layout_marginBottom="@dimen/nasa_views_margin"
             app:singleSelection="true"
             app:checkedChip="@+id/nasa_apod_chip_today"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,30 +25,22 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/nasa_apod_chip_today"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/nasa_chip_choice"
                 android:text="@string/nasa_apod_chip_today" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/nasa_apod_chip_week_ago"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/nasa_chip_choice"
                 android:text="@string/nasa_apod_chip_week_ago" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/nasa_apod_chip_month_ago"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/nasa_chip_choice"
                 android:text="@string/nasa_apod_chip_month_ago" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/nasa_apod_chip_year_ago"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/nasa_chip_choice"
                 android:text="@string/nasa_apod_chip_year_ago" />
 
         </com.google.android.material.chip.ChipGroup>
@@ -70,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:contentDescription="@string/nasa_apod_image_content_description"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/nasa_views_margin"
             app:layout_constraintTop_toBottomOf="@+id/nasa_apod_progress_indicator"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
