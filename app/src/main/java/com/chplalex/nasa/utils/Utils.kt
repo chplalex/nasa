@@ -3,6 +3,8 @@ package com.chplalex.nasa.utils
 import android.net.Uri
 import android.util.Log
 import com.chplalex.nasa.service.api.NASA_DATE_PATTERN
+import com.chplalex.nasa.service.api.NASA_EPIC_IMAGE_DATE_PATTERN
+import com.chplalex.nasa.service.api.NASA_EPIC_TIMESTAMP_PATTERN
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,11 +25,22 @@ fun Date.add(field: Int, amount: Int): Date {
     return calendar.time
 }
 
-fun Date.nasaPatternString(): String = SimpleDateFormat(NASA_DATE_PATTERN, Locale.getDefault()).format(this)
-fun Date.nasaPatternThisDay() = nasaPatternString()
-fun Date.nasaPatternWeekAgo() = add(Calendar.DATE, -7).nasaPatternString()
-fun Date.nasaPatternMonthAgo() = add(Calendar.MONTH, -1).nasaPatternString()
-fun Date.nasaPatternYearAgo() = add(Calendar.YEAR, -1).nasaPatternString()
+fun Date.nasaDatePatternString(): String =
+    SimpleDateFormat(NASA_DATE_PATTERN, Locale.getDefault()).format(this)
+
+fun Date.nasaDatePatternThisDay() = nasaDatePatternString()
+fun Date.nasaDatePatternWeekAgo() = add(Calendar.DATE, -7).nasaDatePatternString()
+fun Date.nasaDatePatternMonthAgo() = add(Calendar.MONTH, -1).nasaDatePatternString()
+fun Date.nasaDatePatternYearAgo() = add(Calendar.YEAR, -1).nasaDatePatternString()
+
+fun Date.systemPatternThisDay() = SimpleDateFormat.getDateInstance().format(this)
+fun Date.systemPatternThisTime() =
+    SimpleDateFormat.getDateTimeInstance().format(this) +
+            " " +
+            SimpleDateFormat.getDateInstance().format(this)
+
+fun Date.nasaEpicImageDatePatternString(): String =
+    SimpleDateFormat(NASA_EPIC_IMAGE_DATE_PATTERN, Locale.getDefault()).format(this)
 
 fun String.youtubeThumbUrl(): String {
     val uri = Uri.parse(this)

@@ -11,15 +11,22 @@
         android:label="@string/menu_nasa_apod" />
 
     <fragment
+        android:id="@+id/nav_nasa_epic"
+        android:name="com.chplalex.nasa.ui.fragment.FragmentNasaEpicContainer"
+        android:label="@string/menu_nasa_epic" />
+
+    <fragment
         android:id="@+id/nav_wiki"
         android:name="com.chplalex.nasa.ui.fragment.FragmentWiki"
         android:label="@string/menu_wiki"
         tools:layout="@layout/fragment_wiki" />
+
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.chplalex.nasa.ui.fragment.FragmentSettings"
         android:label="@string/action_settings"
         tools:layout="@layout/fragment_settings" />
+
     <action
         android:id="@+id/nav_action_settings"
         app:destination="@id/nav_settings" />

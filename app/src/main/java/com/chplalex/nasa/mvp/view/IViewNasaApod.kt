@@ -1,7 +1,5 @@
 package com.chplalex.nasa.mvp.view
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import com.google.android.material.chip.ChipGroup
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle

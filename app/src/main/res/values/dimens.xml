@@ -8,4 +8,7 @@
     <dimen name="corner_radius">10dp</dimen>
     <dimen name="nasa_views_margin">5dp</dimen>
     <dimen name="settings_label_text_size">20sp</dimen>
+    <dimen name="nasa_epic_margin">5dp</dimen>
+    <dimen name="nasa_epic_label_size">18sp</dimen>
+    <dimen name="swipe_indicator_size">8dp</dimen>
 </resources>
