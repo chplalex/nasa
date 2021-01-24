@@ -23,7 +23,7 @@ import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 import javax.inject.Provider
 
-const val NASA_EPIC_PAGE_KEY = "NASA_EPIC_PAGE_KEY"
+private const val NASA_EPIC_PAGE_KEY = "NASA_EPIC_PAGE_KEY"
 
 class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_page), IViewNasaEpicPage {
 
