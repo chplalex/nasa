@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.motion.widget.MotionLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -25,7 +26,7 @@ import javax.inject.Provider
 
 private const val NASA_EPIC_PAGE_KEY = "NASA_EPIC_PAGE_KEY"
 
-class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_page), IViewNasaEpicPage {
+class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_page_start), IViewNasaEpicPage {
 
     @Inject lateinit var injectProvider: Provider<PresenterNasaEpicPage>
 
@@ -37,6 +38,7 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
     private lateinit var textCaption: TextView
     private lateinit var textTime: TextView
     private lateinit var progressIndicator: LinearProgressIndicator
+    private lateinit var motionLayout: MotionLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         App.instance.activityComponent?.inject(this)
@@ -53,6 +55,7 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
         textCaption = view.findViewById(R.id.nasa_epic_text_caption)
         textTime = view.findViewById(R.id.nasa_epic_text_time)
         progressIndicator = view.findViewById(R.id.nasa_epic_progress_indicator)
+        motionLayout = view.findViewById(R.id.nasa_epic_motion_layout)
     }
 
     override fun setImage(url: String) {
@@ -69,6 +72,7 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
                     isFirstResource: Boolean
                 ): Boolean {
                     setProgressVisibility(View.INVISIBLE)
+                    presenter.onImageLoadFailed()
                     return false
                 }
                 override fun onResourceReady(
@@ -79,6 +83,7 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
                     isFirstResource: Boolean
                 ): Boolean {
                     setProgressVisibility(View.INVISIBLE)
+                    presenter.onImageLoadSuccess()
                     return false
                 }
             })
@@ -95,6 +100,11 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
 
     override fun setProgressVisibility(state: Int) {
         progressIndicator.visibility = state
+    }
+
+    override fun startMotion() {
+        //Log.d(TAG, "startMotion()")
+        //motionLayout.transitionToEnd()
     }
 
     companion object {

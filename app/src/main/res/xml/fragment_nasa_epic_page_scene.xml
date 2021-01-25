@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@layout/fragment_nasa_epic_page_start"
+        motion:constraintSetEnd="@layout/fragment_nasa_epic_page_end"
+        motion:duration="1000">
+
+        <OnClick
+            motion:targetId="@+id/button" />
+
+    </Transition>
+
+</MotionScene>
