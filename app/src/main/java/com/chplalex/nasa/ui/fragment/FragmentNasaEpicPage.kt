@@ -4,9 +4,11 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.widget.Group
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -26,9 +28,11 @@ import javax.inject.Provider
 
 private const val NASA_EPIC_PAGE_KEY = "NASA_EPIC_PAGE_KEY"
 
-class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_page_start), IViewNasaEpicPage {
+class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_page),
+    IViewNasaEpicPage {
 
-    @Inject lateinit var injectProvider: Provider<PresenterNasaEpicPage>
+    @Inject
+    lateinit var injectProvider: Provider<PresenterNasaEpicPage>
 
     private val presenter by moxyPresenter {
         injectProvider.get()
@@ -39,6 +43,7 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
     private lateinit var textTime: TextView
     private lateinit var progressIndicator: LinearProgressIndicator
     private lateinit var motionLayout: MotionLayout
+    private lateinit var motionGroup: Group
 
     override fun onCreate(savedInstanceState: Bundle?) {
         App.instance.activityComponent?.inject(this)
@@ -56,6 +61,7 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
         textTime = view.findViewById(R.id.nasa_epic_text_time)
         progressIndicator = view.findViewById(R.id.nasa_epic_progress_indicator)
         motionLayout = view.findViewById(R.id.nasa_epic_motion_layout)
+        motionGroup = view.findViewById(R.id.nasa_epic_motion_group)
     }
 
     override fun setImage(url: String) {
@@ -75,6 +81,7 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
                     presenter.onImageLoadFailed()
                     return false
                 }
+
                 override fun onResourceReady(
                     resource: Drawable?,
                     model: Any?,
@@ -102,9 +109,19 @@ class FragmentNasaEpicPage : MvpAppCompatFragment(R.layout.fragment_nasa_epic_pa
         progressIndicator.visibility = state
     }
 
-    override fun startMotion() {
-        //Log.d(TAG, "startMotion()")
+    override fun startAnimation() {
+        Log.d(TAG, "startAnimation()")
+
+        // 1-й способ
         //motionLayout.transitionToEnd()
+
+        // 2-й способ
+//        val animation = AlphaAnimation(0.0f, 1.0f)
+//        animation.duration = 1000
+//
+//        motionGroup.clearAnimation()
+//        motionGroup.alpha = 0.0f
+//        motionGroup.startAnimation(animation)
     }
 
     companion object {

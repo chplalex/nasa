@@ -9,5 +9,5 @@ interface IViewNasaEpicPage : MvpView {
     fun setCaption(caption: String)
     fun setTime(time: String)
     fun setProgressVisibility(state: Int)
-    fun startMotion()
+    fun startAnimation()
 }

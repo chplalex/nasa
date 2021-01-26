@@ -30,7 +30,7 @@ class PresenterNasaEpicPage @Inject constructor(
             viewState.setCaption(it.caption)
             viewState.setTime(it.timeStamp.systemPatternThisTime())
         }
-        viewState.startMotion()
+        viewState.startAnimation()
     }
 
 }
