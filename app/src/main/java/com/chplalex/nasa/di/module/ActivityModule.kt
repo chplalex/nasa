@@ -14,8 +14,8 @@ class ActivityModule(private val activity: MainActivity) {
 
 //    @ActivityScope
 //    @Provides
-//    fun sharedPreferences() = activity.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
-
+//    fun sharedPreferences() = activity.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE)
+//
     @ActivityScope
     @Provides
     fun context() : Context = activity
