@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_nasa_apod"
             android:title="@string/menu_nasa_apod" />
         <item
+            android:id="@+id/nav_nasa_epic"
+            android:icon="@drawable/ic_nasa_epic"
+            android:title="@string/menu_nasa_epic" />
+        <item
             android:id="@+id/nav_wiki"
             android:icon="@drawable/ic_wiki_logo"
             android:title="@string/menu_wiki" />

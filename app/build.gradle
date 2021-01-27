@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
@@ -78,4 +79,6 @@ dependencies {
     // Dagger library
     implementation 'com.google.dagger:dagger:2.31'
     kapt 'com.google.dagger:dagger-compiler:2.31'
+    // CircleIndicator library
+    implementation 'me.relex:circleindicator:2.1.6'
 }

@@ -12,5 +12,8 @@
     <color name="colorSurfaceCustom">#876E61</color>
     <color name="colorOnSurfaceCustom">#4A148C</color>
     <color name="colorOnBackgroundCustom">#DDD4CF</color>
+
+    <color name="colorAccent">#2196F3</color>
+    <color name="colorAccent40Alpha">#662196F3</color>
 </resources>
 

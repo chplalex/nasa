@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.View
-import com.chplalex.nasa.BuildConfig.NASA_API_KEY
 import com.chplalex.nasa.R
 import com.chplalex.nasa.mvp.view.IViewNasaApod
 import com.chplalex.nasa.service.api.NasaApi
@@ -31,7 +30,7 @@ class PresenterNasaApod @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        loadData(Date().nasaPatternThisDay())
+        loadData(Date().nasaDatePatternThisDay())
         viewState.setChipGroupListener(this::onCheckedChange)
     }
 
@@ -43,10 +42,10 @@ class PresenterNasaApod @Inject constructor(
     private fun onCheckedChange(group: ChipGroup, checkedId: Int) {
         Log.d(TAG, "onCheckedChange(), checkedId = $checkedId")
         when (checkedId) {
-            R.id.nasa_apod_chip_today -> loadData(Date().nasaPatternThisDay())
-            R.id.nasa_apod_chip_week_ago -> loadData(Date().nasaPatternWeekAgo())
-            R.id.nasa_apod_chip_month_ago -> loadData(Date().nasaPatternMonthAgo())
-            R.id.nasa_apod_chip_year_ago -> loadData(Date().nasaPatternYearAgo())
+            R.id.nasa_apod_chip_today -> loadData(Date().nasaDatePatternThisDay())
+            R.id.nasa_apod_chip_week_ago -> loadData(Date().nasaDatePatternWeekAgo())
+            R.id.nasa_apod_chip_month_ago -> loadData(Date().nasaDatePatternMonthAgo())
+            R.id.nasa_apod_chip_year_ago -> loadData(Date().nasaDatePatternYearAgo())
             else -> {
                 viewState.setChipToday()
             }
@@ -56,7 +55,7 @@ class PresenterNasaApod @Inject constructor(
     private fun loadData(date: String) {
         viewState.setProgressVisibility(View.VISIBLE)
         disposable.add(
-            nasaApi.nasaLoadApod(date, NASA_API_KEY)
+            nasaApi.nasaLoadApod(date)
                 .subscribeOn(ioScheduler)
                 .observeOn(uiScheduler)
                 .subscribe({
