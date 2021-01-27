@@ -11,13 +11,13 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/nasa_epic_motion_group"
+            android:id="@+id/nasa_epic_animation_group"
             android:alpha="0.1"/>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/nasa_epic_motion_group"
+            android:id="@+id/nasa_epic_animation_group"
             android:alpha="1.0"/>
     </ConstraintSet>
 

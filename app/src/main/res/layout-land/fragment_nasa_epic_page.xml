@@ -20,15 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/nasa_epic_motion_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nasa_epic_progress_indicator"
-        app:layoutDescription="@xml/fragment_nasa_epic_page_scene">
-
         <ImageView
             android:id="@+id/nasa_epic_image_view"
             android:layout_width="wrap_content"
@@ -36,7 +27,7 @@
             android:contentDescription="@string/nasa_epic_image_content_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nasa_epic_progress_indicator"
             tools:srcCompat="@drawable/ic_nasa_apod" />
 
         <TextView
@@ -48,7 +39,7 @@
             android:textSize="@dimen/nasa_epic_label_size"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/nasa_epic_progress_indicator" />
 
         <TextView
             android:id="@+id/nasa_epic_text_caption"
@@ -87,11 +78,9 @@
             app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"/>
 
         <androidx.constraintlayout.widget.Group
-            android:id="@+id/nasa_epic_motion_group"
+            android:id="@+id/nasa_epic_animation_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="nasa_epic_label_caption,nasa_epic_label_time,nasa_epic_text_time,nasa_epic_text_caption,nasa_epic_image_view"/>
-
-    </androidx.constraintlayout.motion.widget.MotionLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,10 @@ class PresenterNasaEpicPage @Inject constructor(
 
     fun onLoadData(item: NasaEpicItem?) {
         this.item = item
-        item?.let { viewState.setImage(it.imageUrl()) }
+        item?.let {
+            viewState.hideViews()
+            viewState.setImage(it.imageUrl())
+        }
     }
 
     fun onImageLoadFailed() {
@@ -29,8 +32,8 @@ class PresenterNasaEpicPage @Inject constructor(
         item?.let {
             viewState.setCaption(it.caption)
             viewState.setTime(it.timeStamp.systemPatternThisTime())
+            viewState.showViews()
         }
-        viewState.startAnimation()
     }
 
 }

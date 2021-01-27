@@ -12,8 +12,9 @@ interface IViewNasaApod : MvpView {
     fun setDefaultImage()
     fun setErrorImage()
     fun setExplanation(explanation: String)
-    fun setProgressVisibility(state: Int)
     fun showError(title: String, error: Throwable)
     fun setChipGroupListener(listener: ChipGroup.OnCheckedChangeListener)
     fun setChipToday()
+    fun hideAnimatedViews()
+    fun showAnimatedViews()
 }

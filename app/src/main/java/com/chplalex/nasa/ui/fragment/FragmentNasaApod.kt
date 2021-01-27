@@ -3,6 +3,8 @@ package com.chplalex.nasa.ui.fragment
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -39,6 +41,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
     private lateinit var textViewExplanation: TextView
     private lateinit var progressIndicator: LinearProgressIndicator
     private lateinit var chipGroup: ChipGroup
+    private lateinit var bottomSheet: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         App.instance.activityComponent?.inject(this)
@@ -52,7 +55,8 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
         textViewExplanation = view.findViewById(R.id.nasa_apod_explanation)
         progressIndicator = view.findViewById(R.id.nasa_apod_progress_indicator)
         chipGroup = view.findViewById(R.id.nasa_apod_chip_group)
-        setBottomSheetBehavior(view.findViewById(R.id.nasa_apod_bottom_sheet_container))
+        bottomSheet = view.findViewById(R.id.nasa_apod_bottom_sheet_container)
+        setBottomSheetBehavior(bottomSheet)
     }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
@@ -66,6 +70,43 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
 
     override fun setChipToday() {
         chipGroup.check(R.id.nasa_apod_chip_today)
+    }
+
+    override fun hideAnimatedViews() {
+        animateViews(View.INVISIBLE) { presenter.onViewsHided() }
+    }
+
+    override fun showAnimatedViews() {
+        animateViews(View.VISIBLE, null)
+    }
+
+    private fun animateViews(visibilityAfterAnimation: Int, onAnimationFinish: (() -> Unit)?) {
+        val animationListener = object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {}
+            override fun onAnimationEnd(animation: Animation?) {
+                imageView.visibility = visibilityAfterAnimation
+                bottomSheet.visibility = visibilityAfterAnimation
+                onAnimationFinish?.invoke()
+            }
+            override fun onAnimationRepeat(animation: Animation?) {}
+        }
+
+        val alphaStart = if (visibilityAfterAnimation == View.VISIBLE) 0.0f else 1.0f
+        val alphaEnd = if (visibilityAfterAnimation == View.VISIBLE) 1.0f else 0.0f
+
+        val animation = AlphaAnimation(alphaStart, alphaEnd).apply {
+            duration = 350
+            fillAfter = true
+            setAnimationListener(animationListener)
+        }
+
+        imageView.clearAnimation()
+        bottomSheet.clearAnimation()
+
+        imageView.animation = animation
+        bottomSheet.animation = animation
+
+        animation.start()
     }
 
     override fun setTitle(title: String) {
@@ -86,6 +127,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
                     target: Target<Drawable>?,
                     isFirstResource: Boolean
                 ): Boolean {
+                    presenter.onImageLoadFailed()
                     setProgressVisibility(View.INVISIBLE)
                     return false
                 }
@@ -96,6 +138,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
+                    presenter.onImageLoadSuccess()
                     setProgressVisibility(View.INVISIBLE)
                     return false
                 }
@@ -118,7 +161,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
         textViewExplanation.text = explanation
     }
 
-    override fun setProgressVisibility(state: Int) {
+    fun setProgressVisibility(state: Int) {
         progressIndicator.visibility = state
     }
 
