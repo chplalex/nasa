@@ -11,4 +11,5 @@
     <dimen name="nasa_epic_margin">5dp</dimen>
     <dimen name="nasa_epic_label_size">18sp</dimen>
     <dimen name="swipe_indicator_size">8dp</dimen>
+    <dimen name="fab_size">24dp</dimen>
 </resources>
