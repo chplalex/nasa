@@ -10,14 +10,14 @@
         style="@style/Widget.MaterialComponents.LinearProgressIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nasa_epic_margin"
         android:contentDescription="@string/nasa_apod_progress_content_description"
         android:indeterminate="true"
         android:visibility="invisible"
-        android:layout_marginTop="@dimen/nasa_epic_margin"
-        android:layout_marginBottom="@dimen/nasa_epic_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/nasa_epic_image_view"
@@ -26,7 +26,7 @@
         android:contentDescription="@string/nasa_epic_image_content_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nasa_epic_progress_indicator"
+        app:layout_constraintTop_toBottomOf="@id/nasa_epic_progress_indicator"
         tools:srcCompat="@drawable/ic_nasa_apod" />
 
     <TextView
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nasa_epic_image_view" />
 
     <TextView
-        android:id="@+id/nasa_epic_label_date_time"
+        android:id="@+id/nasa_epic_label_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/nasa_epic_margin"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         app:barrierDirection="end"
         app:barrierMargin="@dimen/nasa_epic_margin"
-        app:constraint_referenced_ids="nasa_epic_label_date_time,nasa_epic_label_caption"
+        app:constraint_referenced_ids="nasa_epic_label_time,nasa_epic_label_caption"
         tools:layout_editor_absoluteX="@dimen/nasa_epic_margin" />
 
     <TextView
@@ -107,7 +107,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="nasa_epic_label_date_time,nasa_epic_text_time"
+        app:constraint_referenced_ids="nasa_epic_label_time,nasa_epic_text_time"
         tools:layout_editor_absoluteY="543dp" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/nasa_epic_animation_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="nasa_epic_label_caption,nasa_epic_label_time,nasa_epic_text_time,nasa_epic_text_caption,nasa_epic_image_view" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

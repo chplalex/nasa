@@ -23,7 +23,7 @@ data class NasaEpicItem(
 ) : Parcelable {
 
     fun syncTime() {
-        timeStamp = SimpleDateFormat(NASA_EPIC_TIMESTAMP_PATTERN, Locale.getDefault()).parse(timeString)
+        timeStamp = SimpleDateFormat(NASA_EPIC_TIMESTAMP_PATTERN, Locale.getDefault()).parse(timeString)!!
     }
 
     fun imageUrl() = String.format("%sEPIC/archive/natural/%s/png/%s.png?api_key=%s",

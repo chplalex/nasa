@@ -34,10 +34,7 @@ fun Date.nasaDatePatternMonthAgo() = add(Calendar.MONTH, -1).nasaDatePatternStri
 fun Date.nasaDatePatternYearAgo() = add(Calendar.YEAR, -1).nasaDatePatternString()
 
 fun Date.systemPatternThisDay() = SimpleDateFormat.getDateInstance().format(this)
-fun Date.systemPatternThisTime() =
-    SimpleDateFormat.getDateTimeInstance().format(this) +
-            " " +
-            SimpleDateFormat.getDateInstance().format(this)
+fun Date.systemPatternThisTime() = SimpleDateFormat.getDateTimeInstance().format(this)
 
 fun Date.nasaEpicImageDatePatternString(): String =
     SimpleDateFormat(NASA_EPIC_IMAGE_DATE_PATTERN, Locale.getDefault()).format(this)

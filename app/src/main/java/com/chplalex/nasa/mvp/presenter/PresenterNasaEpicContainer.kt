@@ -43,7 +43,7 @@ class PresenterNasaEpicContainer @Inject constructor(
                 .subscribe({
                     for (item in it) {
                         item.syncTime()
-                        Log.d(TAG, "timeString = ${item.timeString}, timeDate = ${SimpleDateFormat.getDateTimeInstance().format(item.timeStamp)}")
+                        Log.d(TAG, "timeString = ${item.timeString}, timeStamp (formatted) = ${SimpleDateFormat.getDateTimeInstance().format(item.timeStamp)}, timeStamp.systemPatternThisDay() = ${item.timeStamp.systemPatternThisDay()}")
                     }
                     viewState.setViewPager(it)
                     viewState.setChipDate(it[0].timeStamp.systemPatternThisDay())
@@ -77,6 +77,9 @@ class PresenterNasaEpicContainer @Inject constructor(
 
     fun onDateSelected(date: Date) {
         chipDate = date
+
+        Log.d(TAG, "chipDate = $chipDate, nasaDatePatternThisDay() = ${chipDate.nasaDatePatternThisDay()}")
+
         loadData()
     }
 }

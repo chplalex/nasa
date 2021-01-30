@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
+<com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/nasa_epic_progress_indicator"
         style="@style/Widget.MaterialComponents.LinearProgressIndicator"
         android:layout_width="match_parent"
@@ -19,61 +20,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ImageView
-        android:id="@+id/nasa_epic_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/nasa_epic_image_content_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nasa_epic_progress_indicator"
-        tools:srcCompat="@drawable/ic_nasa_apod" />
+        <ImageView
+            android:id="@+id/nasa_epic_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/nasa_epic_image_content_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nasa_epic_progress_indicator"
+            tools:srcCompat="@drawable/ic_nasa_apod" />
 
-    <TextView
-        android:id="@+id/nasa_epic_label_caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/nasa_epic_margin"
-        android:text="@string/nasa_epic_label_caption"
-        android:textSize="@dimen/nasa_epic_label_size"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/nasa_epic_progress_indicator" />
+        <TextView
+            android:id="@+id/nasa_epic_label_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/nasa_epic_margin"
+            android:text="@string/nasa_epic_label_caption"
+            android:textSize="@dimen/nasa_epic_label_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"
+            app:layout_constraintTop_toBottomOf="@id/nasa_epic_progress_indicator" />
 
-    <TextView
-        android:id="@+id/nasa_epic_text_caption"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/nasa_epic_margin"
-        android:layout_marginTop="@dimen/nasa_epic_margin"
-        android:layout_marginEnd="@dimen/nasa_epic_margin"
-        tools:text="Front camera of APOLO13 sjdhf sjdhfksjhdf skdjfhskjdf sajdhdskjdh sadkjhsj kjsdhdksajdf kaksjdkja adajsjdaksdhj"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nasa_epic_label_caption"
-        app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"/>
+        <TextView
+            android:id="@+id/nasa_epic_text_caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/nasa_epic_margin"
+            android:layout_marginTop="@dimen/nasa_epic_margin"
+            android:layout_marginEnd="@dimen/nasa_epic_margin"
+            tools:text="Front camera of APOLO13 sjdhf sjdhfksjhdf skdjfhskjdf sajdhdskjdh sadkjhsj kjsdhdksajdf kaksjdkja adajsjdaksdhj"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nasa_epic_label_caption"
+            app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"/>
 
-    <TextView
-        android:id="@+id/nasa_epic_label_date_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/nasa_epic_margin"
-        android:layout_marginTop="@dimen/nasa_epic_margin"
-        android:text="@string/nasa_epic_label_date_time"
-        android:textSize="@dimen/nasa_epic_label_size"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/nasa_epic_text_caption" />
+        <TextView
+            android:id="@+id/nasa_epic_label_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/nasa_epic_margin"
+            android:layout_marginTop="@dimen/nasa_epic_margin"
+            android:text="@string/nasa_epic_label_date_time"
+            android:textSize="@dimen/nasa_epic_label_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/nasa_epic_text_caption" />
 
-    <TextView
-        android:id="@+id/nasa_epic_text_time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/nasa_epic_margin"
-        android:layout_marginTop="@dimen/nasa_epic_margin"
-        android:layout_marginEnd="@dimen/nasa_epic_margin"
-        tools:text="19:13 23/01/2012"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nasa_epic_label_date_time"
-        app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"/>
+        <TextView
+            android:id="@+id/nasa_epic_text_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/nasa_epic_margin"
+            android:layout_marginTop="@dimen/nasa_epic_margin"
+            android:layout_marginEnd="@dimen/nasa_epic_margin"
+            tools:text="19:13 23/01/2012"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nasa_epic_label_time"
+            app:layout_constraintStart_toEndOf="@+id/nasa_epic_image_view"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/nasa_epic_animation_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="nasa_epic_label_caption,nasa_epic_label_time,nasa_epic_text_time,nasa_epic_text_caption,nasa_epic_image_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
