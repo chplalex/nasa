@@ -28,6 +28,18 @@
         tools:layout="@layout/fragment_settings" />
 
     <action
+        android:id="@+id/nav_action_apod"
+        app:destination="@id/nav_nasa_apod" />
+
+    <action
+        android:id="@+id/nav_action_epic"
+        app:destination="@id/nav_nasa_epic" />
+
+    <action
+        android:id="@+id/nav_action_wiki"
+        app:destination="@id/nav_wiki" />
+
+    <action
         android:id="@+id/nav_action_settings"
         app:destination="@id/nav_settings" />
 
