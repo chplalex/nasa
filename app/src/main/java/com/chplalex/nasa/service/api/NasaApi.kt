@@ -12,6 +12,7 @@ const val NASA_BASE_URL = "https://api.nasa.gov/"
 const val NASA_DATE_PATTERN = "yyyy-MM-dd"
 const val NASA_EPIC_IMAGE_DATE_PATTERN = "yyyy/MM/dd"
 const val NASA_EPIC_TIMESTAMP_PATTERN = "yyyy-MM-dd HH:mm:ss"
+const val NOTE_DATE_PATTERN = "HH:mm dd-MM-yyyy"
 
 interface NasaApi {
 

@@ -5,6 +5,12 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_nasa_apod">
 
+    <activity
+        android:id="@+id/nav_notes"
+        android:name="com.chplalex.nasa.ui.activity.NotesActivity"
+        android:label="@string/menu_notes"
+        tools:layout="@layout/activity_notes" />
+
     <fragment
         android:id="@+id/nav_nasa_apod"
         android:name="com.chplalex.nasa.ui.fragment.FragmentNasaApod"
@@ -24,7 +30,7 @@
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.chplalex.nasa.ui.fragment.FragmentSettings"
-        android:label="@string/action_settings"
+        android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 
     <action

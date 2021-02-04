@@ -12,4 +12,9 @@
     <dimen name="nasa_epic_label_size">18sp</dimen>
     <dimen name="swipe_indicator_size">8dp</dimen>
     <dimen name="fab_size">24dp</dimen>
+    <dimen name="margin_note">4dp</dimen>
+    <dimen name="margin_note_title">8dp</dimen>
+    <dimen name="margin_note_body">8dp</dimen>
+    <dimen name="margin_note_date">8dp</dimen>
+    <dimen name="text_size_note_date">10sp</dimen>
 </resources>
