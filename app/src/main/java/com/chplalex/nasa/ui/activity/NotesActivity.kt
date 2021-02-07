@@ -65,6 +65,18 @@ class NotesActivity : MvpAppCompatActivity(R.layout.activity_notes),
         adapter.notifyDataSetChanged()
     }
 
+    override fun notifyNoteInserted(position: Int) {
+        adapter.notifyItemInserted(position)
+    }
+
+    override fun notifyNoteChanged(position: Int) {
+        adapter.notifyItemChanged(position)
+    }
+
+    override fun notifyNoteRemoved(position: Int) {
+        adapter.notifyItemRemoved(position)
+    }
+
     override fun onNoteClick(note: Note) {
         Intent(this, NoteActivity::class.java).apply {
             putExtra(NOTE_ACTIVITY_ARGS, note)

@@ -8,4 +8,7 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface IViewNotes : MvpView {
     fun setNotes(notes: List<Note>)
     fun notifyNotesChanged()
+    fun notifyNoteInserted(position: Int)
+    fun notifyNoteChanged(position: Int)
+    fun notifyNoteRemoved(position: Int)
 }

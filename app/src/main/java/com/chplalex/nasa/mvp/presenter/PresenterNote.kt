@@ -1,5 +1,6 @@
 package com.chplalex.nasa.mvp.presenter
 
+import com.chplalex.nasa.mvp.model.Color
 import com.chplalex.nasa.mvp.model.Note
 import com.chplalex.nasa.mvp.view.IViewNote
 import com.chplalex.ui.note.NoteData
@@ -18,27 +19,30 @@ class PresenterNote @Inject constructor() : MvpPresenter<IViewNote>() {
             note = arg
         }
         with(note) {
-            viewState.setToolbarColor(color)
+            viewState.setColor(color)
             viewState.setTitle(title)
             viewState.setBody(body)
         }
     }
 
-    fun deleteNote() {
-        note.lastChanged = Date()
+    fun delete() {
         viewState.finishWithResult(NoteData(note, isDeleted = true))
     }
 
-    fun saveNote(note: Note) {
-        note.lastChanged = Date()
+    fun home() {
         viewState.finishWithResult(NoteData(note, isDeleted = false))
     }
 
     fun titleChanged(title: String) {
-        note.title = title
+        note = note.copy(title = title, lastChanged = Date())
     }
 
     fun bodyChanged(body: String) {
-        note.body = body
+        note = note.copy(body = body, lastChanged = Date())
+    }
+
+    fun colorChanged(color: Color) {
+        note = note.copy(color = color, lastChanged = Date())
+        viewState.setColor(color)
     }
 }

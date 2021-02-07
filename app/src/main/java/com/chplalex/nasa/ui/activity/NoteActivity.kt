@@ -19,7 +19,6 @@ import com.chplalex.ui.note.NoteData
 import kotlinx.android.synthetic.main.activity_note.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -53,10 +52,13 @@ class NoteActivity : MvpAppCompatActivity(R.layout.activity_note), IViewNote {
         }
     }
 
+    private val colorChangeListener: (color: Color) -> Unit = { presenter.colorChanged(it) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         App.instance.activityComponent?.inject(this)
         super.onCreate(savedInstanceState)
         initToolbar()
+        initColorPicker()
         initParams()
     }
 
@@ -69,38 +71,36 @@ class NoteActivity : MvpAppCompatActivity(R.layout.activity_note), IViewNote {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    private fun initColorPicker() {
+        colorPicker.onColorClickListener = colorChangeListener
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?) =
         menuInflater.inflate(R.menu.menu_note, menu).let { true }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menu_note_palette -> togglePalette().let { true }
-            android.R.id.home -> saveNote().let { true }
-            R.id.menu_note_delete -> deleteNote().let { true }
+            R.id.menu_note_palette -> palettePressed().let { true }
+            android.R.id.home -> homePressed().let { true }
+            R.id.menu_note_delete -> deletePressed().let { true }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun saveNote() {
-        val note = Note(
-            title = txtNoteTitle.text.toString(),
-            body = txtNoteBody.text.toString(),
-            lastChanged = Date(),
-            color = color
-        )
-        presenter.saveNote(note)
+    private fun homePressed() {
+        presenter.home()
     }
 
-    private fun deleteNote() {
+    private fun deletePressed() {
         AlertDialog.Builder(this)
             .setTitle(R.string.delete_note_title)
             .setMessage(R.string.delete_note_message)
-            .setPositiveButton(R.string.ok_btn_title) { _, _ -> presenter.deleteNote() }
+            .setPositiveButton(R.string.ok_btn_title) { _, _ -> presenter.delete() }
             .setNegativeButton(R.string.cancel_btn_title) { dialog, _ -> dialog.dismiss() }
             .show()
     }
 
-    private fun togglePalette() {
+    private fun palettePressed() {
         if (colorPicker.isOpen) {
             colorPicker.close()
         } else {
@@ -108,7 +108,7 @@ class NoteActivity : MvpAppCompatActivity(R.layout.activity_note), IViewNote {
         }
     }
 
-    override fun setToolbarColor(color: Color) {
+    override fun setColor(color: Color) {
         note_toolbar.setBackgroundColor(color.getColorInt(this))
     }
 

@@ -7,7 +7,7 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 
 @AddToEndSingle
 interface IViewNote : MvpView {
-    fun setToolbarColor(color: Color)
+    fun setColor(color: Color)
     fun setTitle(title: String)
     fun setBody(body: String)
     fun finishWithResult(noteData: NoteData)

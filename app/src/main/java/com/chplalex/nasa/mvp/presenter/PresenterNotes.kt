@@ -18,36 +18,27 @@ class PresenterNotes @Inject constructor() : MvpPresenter<IViewNotes>() {
     }
 
     fun onNoteResult(noteData: NoteData) = with(noteData) {
-        val noteInList = findInList(noteData.note)
-
         if (isDeleted) {
-
-            if (noteInList == null) {
-                return@with
-            } else {
-                notes.remove(noteInList)
+            notes.findItem(note)?.let { position ->
+                notes.removeAt(position)
+                viewState.notifyNoteRemoved(position)
             }
-
         } else {
-
-            if (noteInList == null) {
-                notes.add(noteData.note)
-            } else {
-                noteInList.copy(
-                    title = noteData.note.title,
-                    body = noteData.note.body,
-                    color = noteData.note.color,
-                    lastChanged = noteData.note.lastChanged
-                )
+            notes.findItem(note)?.let { position ->
+                notes.removeAt(position)
+                notes.add(position, note)
+                viewState.notifyNoteChanged(position)
+            } ?: let {
+                notes.add(0, note)
+                viewState.notifyNoteInserted(0)
             }
         }
-
-        viewState.notifyNotesChanged()
     }
 
-    private fun findInList(note: Note): Note? = try {
-        notes.first { note.id == it.id }
-    } catch (exception: Exception) {
-        null
+    private fun List<Note>.findItem(note: Note) : Int? {
+        for (i in indices) {
+            if (get(i).id == note.id) return i
+        }
+        return null
     }
 }
