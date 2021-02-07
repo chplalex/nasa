@@ -2,6 +2,7 @@ package com.chplalex.nasa.ui.fragment
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -17,6 +18,7 @@ import com.chplalex.nasa.R
 import com.chplalex.nasa.mvp.presenter.PresenterNasaApod
 import com.chplalex.nasa.mvp.view.IViewNasaApod
 import com.chplalex.nasa.ui.App
+import com.chplalex.nasa.utils.TAG
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -158,6 +160,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
     }
 
     override fun setExplanation(explanation: String) {
+        Log.d(TAG,"explanation = ${explanation}")
         textViewExplanation.text = explanation
     }
 
