@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chplalex.nasa">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".ui.App"
         android:allowBackup="true"
-        android:label="@string/app_name"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Nasa.System"
-        android:fullBackupContent="true">
+        android:theme="@style/Theme.Nasa.System">
+
         <activity
             android:name=".ui.activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.activity.NotesActivity"
+            android:label="@string/label_notes_activity"/>
+
+        <activity
+            android:name=".ui.activity.NoteActivity"
+            android:label="@string/label_note_activity"/>
+
     </application>
 
 </manifest>

@@ -3,10 +3,9 @@ package com.chplalex.nasa.di.component
 import com.chplalex.nasa.ui.activity.MainActivity
 import com.chplalex.nasa.di.module.ActivityModule
 import com.chplalex.nasa.di.scope.ActivityScope
-import com.chplalex.nasa.ui.fragment.FragmentNasaApod
-import com.chplalex.nasa.ui.fragment.FragmentNasaEpicContainer
-import com.chplalex.nasa.ui.fragment.FragmentNasaEpicPage
-import com.chplalex.nasa.ui.fragment.FragmentWiki
+import com.chplalex.nasa.ui.activity.NoteActivity
+import com.chplalex.nasa.ui.activity.NotesActivity
+import com.chplalex.nasa.ui.fragment.*
 import dagger.Subcomponent
 
 @ActivityScope
@@ -22,4 +21,6 @@ interface ActivityComponent {
     fun inject(fragment: FragmentWiki)
     fun inject(fragment: FragmentNasaEpicContainer)
     fun inject(fragment: FragmentNasaEpicPage)
+    fun inject(activity: NotesActivity)
+    fun inject(activity: NoteActivity)
 }

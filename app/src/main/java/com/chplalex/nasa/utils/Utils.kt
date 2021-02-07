@@ -2,11 +2,14 @@ package com.chplalex.nasa.utils
 
 import android.net.Uri
 import android.util.Log
+import com.chplalex.nasa.mvp.model.Color
+import com.chplalex.nasa.mvp.model.Note
 import com.chplalex.nasa.service.api.NASA_DATE_PATTERN
 import com.chplalex.nasa.service.api.NASA_EPIC_IMAGE_DATE_PATTERN
-import com.chplalex.nasa.service.api.NASA_EPIC_TIMESTAMP_PATTERN
+import com.chplalex.nasa.service.api.NOTE_DATE_PATTERN
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.random.Random.Default.nextInt
 
 const val TAG = "NASA"
 const val WIKI_BASE_URL = "https://ru.wikipedia.org/wiki/"
@@ -24,6 +27,9 @@ fun Date.add(field: Int, amount: Int): Date {
     calendar.add(field, amount)
     return calendar.time
 }
+
+fun Date.noteDatePatternString(): String =
+    SimpleDateFormat(NOTE_DATE_PATTERN, Locale.getDefault()).format(this)
 
 fun Date.nasaDatePatternString(): String =
     SimpleDateFormat(NASA_DATE_PATTERN, Locale.getDefault()).format(this)
@@ -49,5 +55,26 @@ fun String.youtubeThumbUrl(): String {
     Log.d(TAG, "resultUrl = $resultUrl")
     return resultUrl
 }
+
+fun randomNotesList(count: Int) : MutableList<Note> {
+    val list = mutableListOf<Note>()
+    for (i in 0 until count) { list.add(randomNote()) }
+    return list
+}
+
+fun randomNote() = Note(
+    title = randomTitle(),
+    body = randomBody(),
+    color = randomColor(),
+    lastChanged = randomDate()
+)
+
+fun randomTitle() = "Note ${nextInt(100, 199)}"
+fun randomBody() = "Note body ${nextInt(100, 199)}"
+fun randomColor() = Color.values()[nextInt(0, 6)]
+fun randomDate() = Date()
+    .add(Calendar.DAY_OF_MONTH, -nextInt(0, 100))
+    .add(Calendar.HOUR, -nextInt(0, 23))
+
 
 

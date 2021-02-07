@@ -56,7 +56,7 @@ class PresenterNasaApod @Inject constructor(
                 .subscribe({
                     Log.d(
                         TAG,
-                        "NASA APOD data load success: url = ${it.url}, title = ${it.title}, explanation = ${it.explanation}"
+                        "1. NASA APOD data load success: url = ${it.url}, title = ${it.title}, explanation = ${it.explanation}"
                     )
                     data = it
                     when (it.mediaType) {
@@ -87,6 +87,10 @@ class PresenterNasaApod @Inject constructor(
     }
 
     fun onImageLoadSuccess() = data?.let {
+        Log.d(
+            TAG,
+            "2. NASA APOD data load success: url = ${it.url}, title = ${it.title}, explanation = ${it.explanation}"
+        )
         viewState.setTitle(it.title)
         viewState.setExplanation(it.explanation)
         viewState.showAnimatedViews()

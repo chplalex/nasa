@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.ui.AppBarConfiguration
@@ -204,7 +203,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initToolbar() {
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(findViewById(R.id.nasa_toolbar))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

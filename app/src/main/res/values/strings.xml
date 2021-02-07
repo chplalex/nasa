@@ -8,8 +8,6 @@
     <string name="nav_header_subtitle">chepel.alexander@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="action_settings">Settings</string>
-
     <string name="menu_nasa_apod">NASA Picture of the Day</string>
     <string name="menu_nasa_epic">NASA Earth Imaging</string>
     <string name="menu_wiki">Wiki search</string>
@@ -38,4 +36,21 @@
     <string name="nasa_epic_label_date_time"><![CDATA[Date & time:]]></string>
     <string name="nasa_epic_label_caption">Caption:</string>
     <string name="fab_content_description">Application options</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_notes">Notes</string>
+    <string name="tool_note_title">My note</string>
+    <string name="tool_note_body">My note is too long and very nice!</string>
+    <string name="tool_note_date">12:44 04.02.2021</string>
+    <string name="hint_note_title">type a title</string>
+    <string name="hint_note_body">type a note</string>
+    <string name="delete_note_title">Pay attention, please!</string>
+    <string name="delete_note_message">The note will be deleted!</string>
+    <string name="ok_btn_title">Ok</string>
+    <string name="cancel_btn_title">Cancel</string>
+    <string name="note_palette">palette</string>
+    <string name="note_delete">delete</string>
+    <string name="label_note_activity">Note</string>
+    <string name="label_notes_activity">Notes</string>
+    <string name="tools_explanation">If our Sun were part of this star cluster, the night sky would glow like a jewel box of bright stars. This cluster, known as M53 and cataloged as NGC 5024, is one of about 250 globular clusters that survive in our Galaxy. Most of the stars in M53 are older and redder than our Sun, but some enigmatic stars appear to be bluer and younger. These young stars might contradict the hypothesis that all the stars in M53 formed at nearly the same time. These unusual stars are known as blue stragglers and are unusually common in M53. After much debate, blue stragglers are now thought to be stars rejuvenated by fresh matter falling in from a binary star companion. By analyzing pictures of globular clusters like the featured image taken by the Hubble Space Telescope, astronomers use the abundance of stars like blue stragglers to help determine the age of the globular cluster and hence a limit on the age of the universe. M53, visible with a binoculars towards the constellation of Bernice Hair (Coma Berenices), contains over 250,000 stars and is one of the furthest globulars from the center of our Galaxy.</string>
 </resources>

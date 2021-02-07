@@ -15,5 +15,13 @@
 
     <color name="colorAccent">#2196F3</color>
     <color name="colorAccent40Alpha">#662196F3</color>
+
+    <color name="color_white">#F5F5F5</color>
+    <color name="color_yellow">#FFF59D</color>
+    <color name="color_green">#81C784</color>
+    <color name="color_blue">#80d8ff</color>
+    <color name="color_red">#ff8a80</color>
+    <color name="color_violet">#e1bee7</color>
+    <color name="color_pink">#f8bbd0</color>
 </resources>
 
