@@ -27,21 +27,25 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/nasa_apod_chip_today"
                 style="@style/nasa_chip_choice"
+                android:fontFamily="@font/berkshire_swash"
                 android:text="@string/nasa_apod_chip_today" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/nasa_apod_chip_week_ago"
                 style="@style/nasa_chip_choice"
+                android:fontFamily="@font/berkshire_swash"
                 android:text="@string/nasa_apod_chip_week_ago" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/nasa_apod_chip_month_ago"
                 style="@style/nasa_chip_choice"
+                android:fontFamily="@font/berkshire_swash"
                 android:text="@string/nasa_apod_chip_month_ago" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/nasa_apod_chip_year_ago"
                 style="@style/nasa_chip_choice"
+                android:fontFamily="@font/berkshire_swash"
                 android:text="@string/nasa_apod_chip_year_ago" />
 
         </com.google.android.material.chip.ChipGroup>

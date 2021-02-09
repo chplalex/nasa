@@ -1,7 +1,11 @@
 package com.chplalex.nasa.ui.fragment
 
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
 import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
@@ -15,16 +19,20 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.chplalex.nasa.R
+import com.chplalex.nasa.mvp.model.Color
 import com.chplalex.nasa.mvp.presenter.PresenterNasaApod
 import com.chplalex.nasa.mvp.view.IViewNasaApod
 import com.chplalex.nasa.ui.App
 import com.chplalex.nasa.utils.TAG
+import com.chplalex.nasa.utils.randomColor
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import java.text.BreakIterator
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -53,8 +61,16 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         imageView = view.findViewById(R.id.nasa_apod_image)
+
         textViewTitle = view.findViewById(R.id.nasa_apod_title)
+        textViewTitle.typeface = Typeface.createFromAsset(context?.assets, "LongFox-o77A.ttf")
+
         textViewExplanation = view.findViewById(R.id.nasa_apod_explanation)
+        textViewExplanation.typeface = Typeface.createFromAsset(
+            context?.assets,
+            "AlienWars-3V3M.ttf"
+        )
+
         progressIndicator = view.findViewById(R.id.nasa_apod_progress_indicator)
         chipGroup = view.findViewById(R.id.nasa_apod_chip_group)
         bottomSheet = view.findViewById(R.id.nasa_apod_bottom_sheet_container)
@@ -90,6 +106,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
                 bottomSheet.visibility = visibilityAfterAnimation
                 onAnimationFinish?.invoke()
             }
+
             override fun onAnimationRepeat(animation: Animation?) {}
         }
 
@@ -133,6 +150,7 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
                     setProgressVisibility(View.INVISIBLE)
                     return false
                 }
+
                 override fun onResourceReady(
                     resource: Drawable?,
                     model: Any?,
@@ -160,8 +178,32 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
     }
 
     override fun setExplanation(explanation: String) {
-        Log.d(TAG,"explanation = ${explanation}")
-        textViewExplanation.text = explanation
+        Log.d(TAG, "explanation = ${explanation}")
+
+        val spannableString = SpannableString(explanation)
+        textViewExplanation.setText(spannableString, TextView.BufferType.SPANNABLE)
+        val spannableText = textViewExplanation.text as Spannable
+
+        // делим текст на отдельные предложения
+        val iterator: BreakIterator = BreakIterator.getSentenceInstance(Locale.US)
+        iterator.setText(explanation)
+        var start = iterator.first()
+        var end = iterator.next()
+        while (end != BreakIterator.DONE) {
+            Log.d(TAG, explanation.substring(start, end))
+            setSpan(spannableText, start, end, randomColor())
+            start = end
+            end = iterator.next()
+        }
+    }
+
+    private fun setSpan(spannableText: Spannable, start: Int, end: Int, color: Color) {
+        spannableText.setSpan(
+            BackgroundColorSpan(resources.getColor(color.getColorRes())),
+            start,
+            end,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
     }
 
     fun setProgressVisibility(state: Int) {
@@ -175,5 +217,15 @@ class FragmentNasaApod : MvpAppCompatFragment(R.layout.fragment_nasa_apod), IVie
             .setNeutralButton(R.string.nasa_apod_button_clear) { _, _ -> presenter.onDialogButtonPressed() }
             .create()
             .show()
+    }
+
+    private fun Color.getColorRes() = when (this) {
+        Color.WHITE -> R.color.color_white
+        Color.VIOLET -> R.color.color_violet
+        Color.YELLOW -> R.color.color_yellow
+        Color.RED -> R.color.color_red
+        Color.PINK -> R.color.color_pink
+        Color.GREEN -> R.color.color_green
+        Color.BLUE -> R.color.color_blue
     }
 }
