@@ -22,6 +22,10 @@
         <item name="android:fontFamily">@font/glimmer</item>
     </style>
 
+    <style name="Theme.Nasa.Splash" parent="Theme.Nasa.System">
+        <item name="android:windowBackground">@drawable/splash_background_drawable</item>
+    </style>
+
     <style name="Theme.Nasa.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Nasa.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
