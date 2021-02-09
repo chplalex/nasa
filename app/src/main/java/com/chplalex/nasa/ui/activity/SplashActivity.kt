@@ -7,9 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.addListener
 import com.chplalex.nasa.R
 
 
